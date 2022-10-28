@@ -53,15 +53,23 @@ int main() {
                 win.close();
 
             }
-            else if ((Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W)) && leftPaddleY - 20 >= 0)
+            else if (Keyboard::isKeyPressed(Keyboard::W) && leftPaddleY - 20 >= 0)
             {
                 leftPaddleY -= 20;
 
             } 
-            else if ((Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S)) && leftPaddleY < 400)
+            else if (Keyboard::isKeyPressed(Keyboard::S) && leftPaddleY < 400)
             {
                 leftPaddleY += 20;
 
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Up))
+            {
+                rightPaddleY -= 20;
+            }
+            else if (Keyboard::isKeyPressed(Keyboard::Down))
+            {
+                rightPaddleY += 20;
             }
 
         }
@@ -73,15 +81,18 @@ int main() {
         }
         else if ((y > rightPaddleY && y < rightPaddleY + 125) && x > 808)
         {
-            speedX += 1;
-
-            speedX *= -1;
+            if (y >= rightPaddleY && y <= rightPaddleY + 125)
+            {
+                speedX += 0.5;
+                speedX *= -1;
+            }
 
         }
         else if ((x >= leftPaddleX && x <= leftPaddleX + 25) && x < 25)
         {
             if (y >= leftPaddleY && y <= leftPaddleY + 125)
             {
+                speedX += 0.5;
                 speedX *= -1;
             }
             
@@ -98,8 +109,6 @@ int main() {
         y += speedY;
 
         ball.setPosition(Vector2f(x, y));
-
-        rightPaddleY = y - 25;
 
         leftPaddle.setPosition(Vector2f(leftPaddleX, leftPaddleY));
 
