@@ -83,7 +83,7 @@ int main() {
         {
             if (y >= rightPaddleY && y <= rightPaddleY + 125)
             {
-                speedX += 0.5;
+                speedX += 1;
                 speedX *= -1;
             }
 
@@ -92,12 +92,12 @@ int main() {
         {
             if (y >= leftPaddleY && y <= leftPaddleY + 125)
             {
-                speedX += 0.5;
+                speedX += 1;
                 speedX *= -1;
             }
             
         }
-        else if (x < 0)
+        else if (x < 0 || x > 833)
         {
             x = 404, y = 237;
 
